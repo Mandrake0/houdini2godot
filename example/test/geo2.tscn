@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+
+[ext_resource path="res://geo2.tscn" type="ArrayMesh" id="1" ]
+
+
+[node name="test" type="MeshInstance" parent="master" index="1" ]
+
+layers = 0
+skeleton = NodePath("..")
+material__0 = null
+mesh = ExtResource( 1 )
+material_override = null
+lod_min_hysteresis = 0.0
+lod_min_distance = 0.0
+extra_cull_margin = 0.0
+lod_max_distance = 0.0
+use_in_baked_light = false
+cast_shadow = 0
+lod_max_hysteresis = 0.0
