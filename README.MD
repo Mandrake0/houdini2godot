@@ -2,6 +2,8 @@
 
 Proof of concept 
 
+*NOTE: There are some bad Bugs* 
+
 ## Installation
 
 For adding the Files it requires to modify the houdini.env:

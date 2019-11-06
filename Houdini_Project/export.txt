@@ -1,0 +1,1537 @@
+# Initialize parent node variable.
+if locals().get("hou_parent") is None:
+    hou_parent = hou.node("/obj")
+
+# Code for /obj/null1
+hou_node = hou_parent.createNode("null", "null1", run_init_scripts=False, load_contents=True, exact_type_name=True)
+hou_node.move(hou.Vector2(-7.99685, 5.81968))
+hou_node.setSelectableInViewport(True)
+hou_node.showOrigin(False)
+hou_node.useXray(True)
+hou_node.hide(False)
+hou_node.setSelected(True)
+
+hou_parm_template_group = hou.ParmTemplateGroup()
+# Code for parameter template
+hou_parm_template = hou.FolderParmTemplate("stdswitcher4", "Geometry", folder_type=hou.folderType.Tabs, default_value=0, ends_tab_group=False)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("xOrd", "Transform Order", menu_items=(["srt","str","rst","rts","tsr","trs"]), menu_labels=(["Scale Rot Trans","Scale Trans Rot","Rot Scale Trans","Rot Trans Scale","Trans Scale Rot","Trans Rot Scale"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.setJoinWithNext(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("rOrd", "Rotate Order", menu_items=(["xyz","xzy","yxz","yzx","zxy","zyx"]), menu_labels=(["Rx Ry Rz","Rx Rz Ry","Ry Rx Rz","Ry Rz Rx","Rz Rx Ry","Rz Ry Rx"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("t", "Translate", 3, default_value=([0, 0, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.setTags({"autoscope": "1111111111111111111111111111111", "script_action": "import objecttoolutils\nobjecttoolutils.matchTransform(kwargs, 0)", "script_action_help": "Select an object to match the translation with.", "script_action_icon": "BUTTONS_match_transform"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("r", "Rotate", 3, default_value=([0, 0, 0]), min=0, max=360, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.setTags({"autoscope": "1111111111111111111111111111111", "script_action": "import objecttoolutils\nobjecttoolutils.matchTransform(kwargs, 1)", "script_action_help": "Select an object to match the rotation with.", "script_action_icon": "BUTTONS_match_rotation"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("s", "Scale", 3, default_value=([1, 1, 1]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.setTags({"autoscope": "1111111111111111111111111111111", "script_action": "import objecttoolutils\nobjecttoolutils.matchTransform(kwargs, 2)", "script_action_help": "Select an object to match the scale with.", "script_action_icon": "BUTTONS_match_scale"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("p", "Pivot Translate", 3, default_value=([0, 0, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.setTags({"script_action": "import objecttoolutils\nobjecttoolutils.matchTransform(kwargs, 3)", "script_action_help": "Select an object to match the pivot with.", "script_action_icon": "BUTTONS_match_pivot"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("pr", "Pivot Rotate", 3, default_value=([0, 0, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.setTags({"script_action": "import objecttoolutils\nobjecttoolutils.matchTransform(kwargs, 4)", "script_action_help": "Select an object to match the pivot rotation with.", "script_action_icon": "BUTTONS_match_pivot_rotation"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("scale", "Uniform Scale", 1, default_value=([1]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("pre_xform", "Modify Pre-Transform", menu_items=(["clean","cleantrans","cleanrot","cleanscales","extract","reset"]), menu_labels=(["Clean Transform","Clean Translates","Clean Rotates","Clean Scales","Extract Pre-transform","Reset Pre-transform"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.StringReplace)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("keeppos", "Keep Position When Parenting", default_value=False)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("childcomp", "Child Compensation", default_value=False)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("constraints_on", "Enable Constraints", default_value=False)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("constraints_path", "Constraints", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ constraints_on == 0 }")
+hou_parm_template2.setTags({"opfilter": "!!CHOP", "oprelative": ".", "script_action": "import objecttoolutils\nobjecttoolutils.constraintsMenu(kwargs)", "script_action_help": "", "script_action_icon": "BUTTONS_add_constraints"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("lookatpath", "Look At", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template2.setTags({"opfilter": "!!OBJ!!", "oprelative": "."})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("lookupobjpath", "Look Up Object", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template2.setTags({"opfilter": "!!OBJ!!", "oprelative": "."})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("lookup", "Look At Up Vector", 1, default_value=(["on"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=(["off","on","quat","pos","obj"]), menu_labels=(["Don't Use Up Vector","Use Up Vector","Use Quaternions","Use Global Position","Use Up Object"]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("pathobjpath", "Path Object", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template2.setTags({"opfilter": "!!SOP!!", "oprelative": "."})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("roll", "Roll", 1, default_value=([0]), min=-360, max=360, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Angle, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("pos", "Position", 1, default_value=([0]), min=0, max=10, min_is_strict=True, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("uparmtype", "Parameterization", menu_items=(["uniform","arc"]), menu_labels=(["Uniform","Arc Length"]), default_value=1, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.IntParmTemplate("pathorient", "Orient Along Path", 1, default_value=([1]), min=0, max=1, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("up", "Orient Up Vector", 3, default_value=([0, 1, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Vector, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("bank", "Auto-Bank factor", 1, default_value=([0]), min=-1, max=1, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+hou_parm_template_group.append(hou_parm_template)
+# Code for parameter template
+hou_parm_template = hou.FolderParmTemplate("stdswitcher4_1", "Render", folder_type=hou.folderType.Tabs, default_value=0, ends_tab_group=False)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("tdisplay", "Display", default_value=False)
+hou_parm_template2.setJoinWithNext(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.IntParmTemplate("display", "Display", 1, default_value=([1]), min=0, max=1, min_is_strict=True, max_is_strict=True, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("renderspace", "Output transform as render space (RIB/IFD)", default_value=False)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+hou_parm_template_group.append(hou_parm_template)
+# Code for parameter template
+hou_parm_template = hou.FolderParmTemplate("stdswitcher4_2", "Misc", folder_type=hou.folderType.Tabs, default_value=0, ends_tab_group=False)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("use_dcolor", "Set Wireframe Color", default_value=True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("dcolor", "Wireframe Color", 3, default_value=([0, 0.75, 0]), min=0, max=1, min_is_strict=True, max_is_strict=True, look=hou.parmLook.ColorSquare, naming_scheme=hou.parmNamingScheme.RGBA)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("picking", "Viewport Selecting Enabled", default_value=True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("pickscript", "Select Script", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.FileReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.StringReplace)
+hou_parm_template2.setTags({"filechooser_mode": "read"})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("caching", "Cache Object Transform", default_value=True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("geoscale", "Display Uniform Scale", 1, default_value=([1]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("geosize", "Display Scale", 3, default_value=([1, 1, 1]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("geocenter", "Display Center", 3, default_value=([0, 0, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FloatParmTemplate("georotate", "Display Rotate", 3, default_value=([0, 0, 0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.XYZW)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("displayicon", "Display", menu_items=(["icon","axis","iconandaxis"]), menu_labels=(["Icon","Axis","Icon and Axis"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("controltype", "Control Type", menu_items=(["null","circles","box","planes","nullandcircles","nullandbox","nullandplanes","custom","custom2"]), menu_labels=(["Null","Circles","Box","Planes","Null and Circles","Null and Box","Null and Planes","Control SOP Input","Instanced SOP"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("geocustom", "Display Custom", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.setTags({"opfilter": "!!SOP!!", "oprelative": "."})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("orientation", "Orientation", menu_items=(["xyz","x","y","z","xy","xz","yz"]), menu_labels=(["All planes","YZ plane","ZX plane","XY plane","YZ, ZX planes","YZ, XY planes","ZX, XY planes"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("shadedmode", "Shaded Mode", default_value=False)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("vport_shadeopen", "Shade Open Curves In Viewport", default_value=False)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.ToggleParmTemplate("vport_displayassubdiv", "Display as Subdivision in Viewport", default_value=False)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("shop_materialpath", "Material", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.NodeReference, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.hide(True)
+hou_parm_template2.setTags({"opfilter": "!!CUSTOM/MATERIAL!!", "oprelative": "."})
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("shop_materialopts", "Options", menu_items=([]), menu_labels=([]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Mini)
+hou_parm_template2.hide(True)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+hou_parm_template_group.append(hou_parm_template)
+# Code for parameter template
+hou_parm_template = hou.FolderParmTemplate("stdswitcher4_3", "Godot", folder_type=hou.folderType.Tabs, default_value=0, ends_tab_group=False)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("exportType", "Export Type", menu_items=(["full_obj","scene","obj","disabled"]), menu_labels=(["Obj & Scene Export","Scene","Obj Export","No Export"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("assetFolder", "Asset Folder", 1, default_value=(["$OS/"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("assetName", "Asset Name", 1, default_value=(["$OS.tscn"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.StringParmTemplate("assetScript", "Asset Script", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.setHelp("Add Script Path to Godot Script File")
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.MenuParmTemplate("assetType", "Asset Type", menu_items=(["0","1","2","3","4","5"]), menu_labels=(["Geometry","Scene Instance","Camera","Light","Bone","Custom"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.SeparatorParmTemplate("sepparm")
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder0", "Geometry", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 0 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.FolderParmTemplate("folder9", "Spatial", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template3.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template4 = hou.ToggleParmTemplate("Export_as_Root_Spatial", "Export as Root", default_value=False)
+hou_parm_template4.setConditional( hou.parmCondType.DisableWhen, "{ Export_as_Root_MeshInstance == 1 }")
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_spatial_name", "Name", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FolderParmTemplate("folder10", "Mesh Instance", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template3.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template4 = hou.ToggleParmTemplate("Export_as_Root_MeshInstance", "Export as Root", default_value=False)
+hou_parm_template4.setConditional( hou.parmCondType.DisableWhen, "{ Export_as_Root_Spatial == 1 }")
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_name", "Name", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_parent", "parent", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.IntParmTemplate("godot_geometry_meshinstance_layer", "Layer", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_material_override", "material_override", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.ToggleParmTemplate("godot_geometry_meshinstance_cast_shadow", "cast_shadow", default_value=False)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_extra_cull_margin", "extra_cull_margin", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_use_in_baked_light", "use_in_baked_light", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_lod_min_distance", "lod_min_distance", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_lod_min_hysteresis", "lod_min_hysteresis", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_lod_max_distance", "lod_max_distance", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_lod_max_hysteresis", "lod_max_hysteresis", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_skeleton", "skeleton", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.StringParmTemplate("godot_geometry_meshinstance_material__0", "material__0", 1, default_value=([""]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder1", "Instance", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 1 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.LabelParmTemplate("labelparm2", "Add some Value Instance", column_labels=([""]))
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder2", "Camera", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 2 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_camera_keep_aspect", "keep_aspect", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_camera_cull_mask", "cull_mask", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.StringParmTemplate("godot_camera_environment", "environment", 1, default_value=(["0"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_h_offset", "h_offset", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_v_offset", "v_offset", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_camera_doppler_tracking", "doppler_tracking", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.StringParmTemplate("godot_camera_current", "current", 1, default_value=(["0"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_fov", "fov", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_size", "size", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_far", "far", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_camera_keep_aspect2", "keep_aspect", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.setTags({"units": ""})
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder3", "Light", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 3 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.MenuParmTemplate("godot_light_setup", "Light Setup", menu_items=(["0","1","2"]), menu_labels=(["Directional Light","Omni Light","Spot Light"]), default_value=0, icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.SeparatorParmTemplate("sepparm2")
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_light_layer", "layer", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.StringParmTemplate("godot_light_light_color", "light_color", 1, default_value=(["0"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_light_light_energy", "light_energy", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_light_light_indirect_energy", "light_indirect_energy", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.ToggleParmTemplate("godot_light_light_negative", "light_negative", default_value=False)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_light_light_specular", "light_specular", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_light_light_bake_mode", "light_bake_mode", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.IntParmTemplate("godot_light_light_cull_mask", "light_cull_mask", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.ToggleParmTemplate("godot_light_shadow_enabled", "shadow_enabled", default_value=False)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.StringParmTemplate("godot_light_shadow_color", "shadow_color", 1, default_value=(["0"]), naming_scheme=hou.parmNamingScheme.Base1, string_type=hou.stringParmType.Regular, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FloatParmTemplate("godot_light_shadow_contact", "shadow_contact", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.ToggleParmTemplate("godot_light_shadow_reverse_cull_face", "shadow_reverse_cull_face", default_value=False)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.ToggleParmTemplate("godot_light_editor_only", "editor_only", default_value=False)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.SeparatorParmTemplate("sepparm3")
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FolderParmTemplate("folder6", "Directional Light", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template3.setConditional( hou.parmCondType.HideWhen, "{ godot_light_setup != 0 }")
+hou_parm_template3.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template4 = hou.IntParmTemplate("godot_directional_light_directional_shadow_mode", "directional_shadow_mode", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_split_1", "directional_shadow_split_1", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_split_2", "directional_shadow_split_2", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_split_3", "directional_shadow_split_3", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.ToggleParmTemplate("godot_directional_light_directional_shadow_blend_splits", "directional_shadow_blend_splits", default_value=False)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_normal_bias", "directional_shadow_normal_bias", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_bias_split_scale", "directional_shadow_bias_split_scale", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.IntParmTemplate("godot_directional_light_directional_shadow_depth_range", "directional_shadow_depth_range", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_directional_light_directional_shadow_max_distance", "directional_shadow_max_distance", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FolderParmTemplate("folder7", "Omni Light", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template3.setConditional( hou.parmCondType.HideWhen, "{ godot_light_setup != 1 }")
+hou_parm_template3.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_omni_light_omni_range", "omni_range", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_omni_light_omni_attenuation", "omni_attenuation", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.IntParmTemplate("godot_omni_light_omni_shadow_mode", "omni_shadow_mode", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.IntParmTemplate("godot_omni_light_omni_shadow_detail", "omni_shadow_detail", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, naming_scheme=hou.parmNamingScheme.Base1, menu_items=([]), menu_labels=([]), icon_names=([]), item_generator_script="", item_generator_script_language=hou.scriptLanguage.Python, menu_type=hou.menuType.Normal)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+# Code for parameter template
+hou_parm_template3 = hou.FolderParmTemplate("folder8", "Spot Light", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template3.setConditional( hou.parmCondType.HideWhen, "{ godot_light_setup != 2 }")
+hou_parm_template3.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_spot_light_spot_range", "spot_range", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_spot_light_spot_attenuation", "spot_attenuation", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_spot_light_spot_angle", "spot_angle", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+# Code for parameter template
+hou_parm_template4 = hou.FloatParmTemplate("godot_spot_light_spot_angle_attenuation", "spot_angle_attenuation", 1, default_value=([0]), min=0, max=10, min_is_strict=False, max_is_strict=False, look=hou.parmLook.Regular, naming_scheme=hou.parmNamingScheme.Base1)
+hou_parm_template3.addParmTemplate(hou_parm_template4)
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder4", "Bone", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 4 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.LabelParmTemplate("labelparm3", "Add some Value Bone", column_labels=([""]))
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+# Code for parameter template
+hou_parm_template2 = hou.FolderParmTemplate("folder5", "Custom", folder_type=hou.folderType.Simple, default_value=0, ends_tab_group=False)
+hou_parm_template2.setConditional( hou.parmCondType.HideWhen, "{ assetType != 5 }")
+hou_parm_template2.setTags({"group_type": "simple"})
+# Code for parameter template
+hou_parm_template3 = hou.LabelParmTemplate("labelparm5", "Add some Value Custom", column_labels=([""]))
+hou_parm_template2.addParmTemplate(hou_parm_template3)
+hou_parm_template.addParmTemplate(hou_parm_template2)
+hou_parm_template_group.append(hou_parm_template)
+hou_node.setParmTemplateGroup(hou_parm_template_group)
+# Code for /obj/null1/stdswitcher1 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("stdswitcher1")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/xOrd parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("xOrd")
+hou_parm.lock(False)
+hou_parm.set("srt")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/rOrd parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("rOrd")
+hou_parm.lock(False)
+hou_parm.set("xyz")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/t parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("t")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((True, True, True))
+
+
+# Code for /obj/null1/r parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("r")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((True, True, True))
+
+
+# Code for /obj/null1/s parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("s")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((1, 1, 1))
+hou_parm_tuple.setAutoscope((True, True, True))
+
+
+# Code for /obj/null1/p parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("p")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/pr parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("pr")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/scale parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("scale")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/pre_xform parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("pre_xform")
+hou_parm.lock(False)
+hou_parm.set("clean")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/keeppos parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("keeppos")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/childcomp parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("childcomp")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/constraints_on parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("constraints_on")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/constraints_path parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("constraints_path")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/lookatpath parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("lookatpath")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/lookupobjpath parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("lookupobjpath")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/lookup parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("lookup")
+hou_parm.lock(False)
+hou_parm.set("on")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/pathobjpath parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("pathobjpath")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/roll parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("roll")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/pos parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("pos")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/uparmtype parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("uparmtype")
+hou_parm.lock(False)
+hou_parm.set("arc")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/pathorient parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("pathorient")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/up parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("up")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 1, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/bank parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("bank")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/tdisplay parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("tdisplay")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/display parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("display")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/renderspace parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("renderspace")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/use_dcolor parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("use_dcolor")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/dcolor parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("dcolor")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0.75, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/picking parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("picking")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/pickscript parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("pickscript")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/caching parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("caching")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/geoscale parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("geoscale")
+hou_parm.lock(False)
+hou_parm.set(1)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/geosize parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("geosize")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((1, 1, 1))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/geocenter parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("geocenter")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/georotate parm tuple
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm_tuple = hou_node.parmTuple("georotate")
+hou_parm_tuple.lock((False, False, False))
+hou_parm_tuple.set((0, 0, 0))
+hou_parm_tuple.setAutoscope((False, False, False))
+
+
+# Code for /obj/null1/displayicon parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("displayicon")
+hou_parm.lock(False)
+hou_parm.set("icon")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/controltype parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("controltype")
+hou_parm.lock(False)
+hou_parm.set("null")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/geocustom parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("geocustom")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/orientation parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("orientation")
+hou_parm.lock(False)
+hou_parm.set("xyz")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/shadedmode parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("shadedmode")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/vport_shadeopen parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("vport_shadeopen")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/vport_displayassubdiv parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("vport_displayassubdiv")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/shop_materialpath parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("shop_materialpath")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/shop_materialopts parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("shop_materialopts")
+hou_parm.lock(False)
+hou_parm.set("override")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/stdswitcher41 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("stdswitcher41")
+hou_parm.lock(False)
+hou_parm.set(3)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/exportType parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("exportType")
+hou_parm.lock(False)
+hou_parm.set("full_obj")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/assetFolder parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("assetFolder")
+hou_parm.lock(False)
+hou_parm.set("$OS/")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/assetName parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("assetName")
+hou_parm.lock(False)
+hou_parm.set("$OS.tscn")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/assetScript parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("assetScript")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/assetType parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("assetType")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder0 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder0")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder9 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder9")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/Export_as_Root_Spatial parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("Export_as_Root_Spatial")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_spatial_name parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_spatial_name")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder10 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder10")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/Export_as_Root_MeshInstance parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("Export_as_Root_MeshInstance")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_name parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_name")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_parent parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_parent")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_layer parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_layer")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_material_override parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_material_override")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_cast_shadow parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_cast_shadow")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_extra_cull_margin parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_extra_cull_margin")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_use_in_baked_light parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_use_in_baked_light")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_lod_min_distance parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_lod_min_distance")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_lod_min_hysteresis parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_lod_min_hysteresis")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_lod_max_distance parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_lod_max_distance")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_lod_max_hysteresis parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_lod_max_hysteresis")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_skeleton parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_skeleton")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_geometry_meshinstance_material__0 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_geometry_meshinstance_material__0")
+hou_parm.lock(False)
+hou_parm.set("")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder1 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder1")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder2 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder2")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_keep_aspect parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_keep_aspect")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_cull_mask parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_cull_mask")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_environment parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_environment")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_h_offset parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_h_offset")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_v_offset parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_v_offset")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_doppler_tracking parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_doppler_tracking")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_current parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_current")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_fov parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_fov")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_size parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_size")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_far parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_far")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_camera_keep_aspect2 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_camera_keep_aspect2")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder3 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder3")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_setup parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_setup")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_layer parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_layer")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_color parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_color")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_energy parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_energy")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_indirect_energy parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_indirect_energy")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_negative parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_negative")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_specular parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_specular")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_bake_mode parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_bake_mode")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_light_cull_mask parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_light_cull_mask")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_shadow_enabled parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_shadow_enabled")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_shadow_color parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_shadow_color")
+hou_parm.lock(False)
+hou_parm.set("0")
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_shadow_contact parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_shadow_contact")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_shadow_reverse_cull_face parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_shadow_reverse_cull_face")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_light_editor_only parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_light_editor_only")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder6 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder6")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_mode parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_mode")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_split_1 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_split_1")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_split_2 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_split_2")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_split_3 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_split_3")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_blend_splits parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_blend_splits")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_normal_bias parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_normal_bias")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_bias_split_scale parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_bias_split_scale")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_depth_range parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_depth_range")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_directional_light_directional_shadow_max_distance parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_directional_light_directional_shadow_max_distance")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder7 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder7")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_omni_light_omni_range parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_omni_light_omni_range")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_omni_light_omni_attenuation parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_omni_light_omni_attenuation")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_omni_light_omni_shadow_mode parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_omni_light_omni_shadow_mode")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_omni_light_omni_shadow_detail parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_omni_light_omni_shadow_detail")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder8 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder8")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_spot_light_spot_range parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_spot_light_spot_range")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_spot_light_spot_attenuation parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_spot_light_spot_attenuation")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_spot_light_spot_angle parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_spot_light_spot_angle")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/godot_spot_light_spot_angle_attenuation parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("godot_spot_light_spot_angle_attenuation")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder4 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder4")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+# Code for /obj/null1/folder5 parm 
+if locals().get("hou_node") is None:
+    hou_node = hou.node("/obj/null1")
+hou_parm = hou_node.parm("folder5")
+hou_parm.lock(False)
+hou_parm.set(0)
+hou_parm.setAutoscope(False)
+
+
+hou_node.setExpressionLanguage(hou.exprLanguage.Hscript)
+
+hou_node.setUserData("___Version___", "16.5.496")
+if hasattr(hou_node, "syncNodeVersionIfNeeded"):
+    hou_node.syncNodeVersionIfNeeded("16.5.496")

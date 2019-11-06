@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sphere_object1.obj-0ceaad3f94288a93c23a80e269b7bbf9.mesh"
+
+[deps]
+
+files=[ "res://.import/sphere_object1.obj-0ceaad3f94288a93c23a80e269b7bbf9.mesh" ]
+
+source_file="res://Mesh/sphere_object1.obj"
+dest_files=[ "res://.import/sphere_object1.obj-0ceaad3f94288a93c23a80e269b7bbf9.mesh", "res://.import/sphere_object1.obj-0ceaad3f94288a93c23a80e269b7bbf9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
