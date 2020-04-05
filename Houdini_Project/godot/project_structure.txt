@@ -1,6 +1,0 @@
-Assets/
-Character/
-Scripts/
-Scene/
-Scene/Scene_development/
-Scene/Scene_production/

@@ -1,0 +1,16 @@
+{
+    "path": "/path/to/folder", 
+    "env": [
+        {
+            "HOUDINI2GODOT": "/path/to/folder"
+        }, 
+        {
+            "PATH": {
+                "method": "prepend", 
+                "value": [
+                    "/path/to/folder"
+                ]
+            }
+        }
+    ]
+}

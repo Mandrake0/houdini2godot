@@ -1,40 +1,22 @@
 # Houdini2Godot
 
-Proof of concept 
+Exports TSCN and ESCN Files with gltf as ressources.
+Scense can be Exported with customized Godot Instancer. 
 
-*NOTE: There are some bad Bugs* 
+# Status
+
+**there are currently some bug.**
+
 
 ## Installation
 
-For adding the Files it requires to modify the houdini.env:
-
-```Bash
-
-####################
-# houdini.env
-####################
-# example Windows
-####################
-
-#
-# GODOT_LIB : Set the Path to the Houdini2Godot Installation Path 
-# 
-
-GODOT_LIB="C:\Development\houdini2godot"
-GODOT_HDA=$GODOT_LIB/hda
-
-# Add the Paths to the Houdini Variables
-
-HOUDINI_OTLSCAN_PATH = $GODOT_HDA;@/otls
-HOUDINI_PATH = $GODOT_LIB;&
-
-```
-
-There is also the Possability for using a XML File.
+Use the Package JSON file for Houdini. 
+You need to set the path Manualy in the file.
 
 
 ## Videos
 
+Old Video of the Proof of Concept:
 [Example Instancing](https://vimeo.com/279678590)
 
 ## Ressources
