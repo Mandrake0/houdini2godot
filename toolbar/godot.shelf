@@ -4,4 +4,27 @@
  It should not be hand-edited when it is being used by the application.
  Note, that two definitions of the same element are not allowed in
  a single file. -->
+
+  <tool name="tool_1" label="Create Asset Exporter" icon="../config/Icons/Godot_icon.svg">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <toolshelf name="Godot" label="Godot">
+    <memberTool name="Asset_Exporter"/>
+    <memberTool name="scene_exporter"/>
+  </toolshelf>
+
+  <tool name="scene_exporter" label="Scene Exporter" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+node = hou.node("/obj")
+node.createNode("godot_scene_exporter").moveToGoodPosition()]]></script>
+  </tool>
+
+  <tool name="Asset_Exporter" label="Asset Exporter" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+node = hou.node("/obj")
+node.createNode("Godot_Exporter").moveToGoodPosition()]]></script>
+  </tool>
 </shelfDocument>
