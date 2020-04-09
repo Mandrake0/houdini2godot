@@ -3,9 +3,12 @@
 Exports TSCN and ESCN Files with gltf as ressources.
 Scense can be Exported with customized Godot Instancer. 
 
-# Status
+## Development
 
-**there are currently some bug.**
+**Please give some Feedback what type of Features are needed.** 
+
+Currently there are no plans to create a custom exporter for Animations, Bones because GLTF should solve this requirement.
+
 
 
 ## Installation

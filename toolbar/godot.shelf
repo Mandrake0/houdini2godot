@@ -25,6 +25,6 @@ node.createNode("godot_scene_exporter").moveToGoodPosition()]]></script>
     <script scriptType="python"><![CDATA[import hou
 
 node = hou.node("/obj")
-node.createNode("Godot_Exporter").moveToGoodPosition()]]></script>
+node.createNode("godot_asset_exporter").moveToGoodPosition()]]></script>
   </tool>
 </shelfDocument>
