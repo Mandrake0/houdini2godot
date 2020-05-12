@@ -45,7 +45,7 @@ func _ready():
 		# var instance_object = load(instance) 
 		var o = instance_object.instance()
 		o.set_translation(position)
-		o.set_rotation_degrees(orient)
+		o.set_rotation(orient)
 		o.set_scale(scale)
 		add_child(o)
 	
