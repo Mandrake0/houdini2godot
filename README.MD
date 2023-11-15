@@ -1,5 +1,7 @@
 # Houdini2Godot
 
+**Made for Godot 4.x**
+
 Exports TSCN and ESCN Files with gltf as ressources.
 Scense can be Exported with customized Godot Instancer. 
 
@@ -9,13 +11,32 @@ Scense can be Exported with customized Godot Instancer.
 
 Currently there are no plans to create a custom exporter for Animations, Bones because GLTF should solve this requirement.
 
-
+I am not a Godot Game Developer the question is how the Tools can be used Productive for a Artist! Feedback are Welcome
 
 ## Installation
+
+1. Download Current Repository
+2. Extract to preferd Directory
+3. Move houdini2godot.json to the Houdini User Package Folder
+4. Edit houdini2godot.json and set the Path
+5. Start Houdini and check if the Godot Assets are loaded Networkview:(Tab -> Godot)
+    There is also Godot Shelf but currently not required
+
+### Package
 
 Use the Package JSON file for Houdini. 
 You need to set the path Manualy in the file.
 
+[SideFx Doc](https://www.sidefx.com/docs/houdini/ref/plugins.html)
+
+## Example
+
+There are Project Files for Godot Engine and a hip File for Houdini
+The Godot Project requires the data from houdini to work.
+
+To Export corrctly in Houdini it requires to change the Godot Project Folder in the Node's: 
+* godot_asset_export
+* godot_scene_export
 
 ## Videos
 
@@ -29,4 +50,3 @@ The Full File Descripton doesn't exist but there is the Blender Exporter that co
 [Godot Doc TSCN](https://docs.godotengine.org/en/3.1/development/file_formats/tscn.html)
 
 [Blender Exporter Example Files](https://github.com/godotengine/godot-blender-exporter/tree/master/tests)
-

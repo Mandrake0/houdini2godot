@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctqoy3olwqtt1"]
+
+[ext_resource type="Script" path="res://free_look_camera.gd" id="1_0or2e"]
+[ext_resource type="PackedScene" uid="uid://dtrbbjsvrta" path="res://scene/scene.tscn" id="2_u7kx4"]
+[ext_resource type="PackedScene" path="res://asset/testgeometry_rubbertoy1.tscn" id="3_ddclo"]
+
+[node name="root" type="Node3D"]
+
+[node name="main" parent="." instance=ExtResource("2_u7kx4")]
+
+[node name="testgeometry_rubbertoy1" parent="." instance=ExtResource("3_ddclo")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.337356, 1.65672)
+script = ExtResource("1_0or2e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.387773, 0.921755, 0, -0.921755, -0.387773, 0, 20, 0)

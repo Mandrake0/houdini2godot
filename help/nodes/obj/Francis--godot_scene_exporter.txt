@@ -1,0 +1,115 @@
+#type: node
+#context: obj
+#internal: godot_scene_exporter
+#icon: godot_icon
+
+#tags: godot
+
+= Godot Scene Exporter =
+
+"""The Godot Scene Exporter export Godot Scenes and CSV Files"""
+
+== Overview ==
+The Godot Scene Exporter uses the Houdini Instance Functionality for Exporting Level Designs.
+Basic Static Meshes Export is possible.
+
+NOTE:
+    Currently there are many Limitations!
+    NO Export for Lights, Bones, Volumes and every other Funky stuff :-) 
+
+@parameters
+
+== Setup ==
+
+Project Folder:
+    #id: project_folder
+
+    Set the Root Folder Path to the Godot Project
+
+== Assets ==
+
+Asset Folder:
+    #id:asset_folder
+
+    Folder Name to Export all Selected Assets
+    
+Asset Flag Type:
+    #id: Asset Flag Type
+
+    Selects the Geometry from the Flagged Node
+
+Filename:
+    #id: asset_filename
+
+    The Export Filename, Default Filename is *asset.csv* 
+
+== Instance ==
+
+Export Object List:
+    #id: export_object_list
+
+    When Togglet active it will create the Object list Data File
+
+Export Instance File:
+    #id: export_instance_file
+
+    When Togglet active it will create the Instance list Data File
+
+Instance Object:
+    #id: objpath1
+
+    The Instance Node with the required Attributes.
+
+    NOTE:
+        Only these Point Attributes should exist: instance, P, N, scale
+
+=== Optimisation ===
+
+Floatingpoint Precision:
+    #id:Floatingpoint_Precision
+
+    Houdini Export Float's in a high Precision in most cases it isn't required in a Godot Scene.
+    For Reducing the Filesize it makes sense to have this option active.
+
+    Default is 5
+
+    0.123456789 -> 0.12345
+
+Float is Integer:
+    #id:Float_is_Integer
+
+    When a Float Attributte in a Vector can be converted to a Integer it will Converted.
+
+    1.0 -> 1
+
+    0.0 -> 0
+
+Filename:
+    #id: instance_filename
+
+    The Exporting Instance Filename, Default Filename is *instance.csv* 
+
+== Godot Scene ==
+
+Scene File Export:
+    #id:scene_file_export
+
+    When Togglet active it Exports a Scene File.
+
+    NOTE:
+        Deactivate when the File is modified otherwise it gets overwritten 
+
+Scene Folder:
+    #id:scene_name
+
+    Scene Folder to Export the Scene Data
+
+Scene Filetype:
+    #id:godot_filetype
+
+    Define the Godot Scene File Type TSCN or ESCN
+
+    TSCN:
+        Editable Node File
+    ESCN:
+        Locket Node File

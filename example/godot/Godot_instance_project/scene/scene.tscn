@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtrbbjsvrta"]
+
+[ext_resource type="Script" path="res://scene/instance.gd" id="1"]
+
+[node name="main" type="Node"]
+script = ExtResource("1")

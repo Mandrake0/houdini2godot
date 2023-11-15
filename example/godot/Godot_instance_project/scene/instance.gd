@@ -1,7 +1,7 @@
 extends Node
 
-var instance_filename 	= "res://%FOLDER%//instance.csv"
-var assets_filename 	= "res://%FOLDER%//assets.csv"
+var instance_filename 	= "res://scene//instance.csv"
+var assets_filename 	= "res://scene//assets.csv"
 var delimeter 			= ","
 
 func _ready():

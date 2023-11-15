@@ -1,0 +1,130 @@
+#type: node
+#context: obj
+#internal: godot_asset_exporter
+#icon: godot_icon
+
+#tags: godot
+
+= Godot Asset Exporter =
+
+"""The Godot Asset Exporter export Assets"""
+
+== Overview ==
+The Godot Asset Exporter does what the name suggest it export Asset's.
+It is possible to have multiple Godot Asset Exporter in the scene when there is a requirement to sectionise the Export.
+
+@parameters
+
+== Godot Project ==
+
+Folder:
+    #id: project_folder
+
+    Set the Root Folder Path to the Godot Project
+
+== Assets ==
+    
+Scene File Export:
+    #id: Scene File Export
+
+    When Toggled it creates a default scene.tscn File
+
+Asset Folder:
+    #id:asset_folder
+
+    Folder Name to Export all Selected Assets
+
+Asset:
+    #id: asset_list
+    
+    Select all the Assets in Houdini
+    
+Asset Flag Type:
+    #id: Asset Flag Type
+
+    Selects the Geometry from the Flagged Node
+    
+== GLTF Export ==
+
+GLTF Export:
+    #id: gltf_export
+
+    When it is Active it Exports all Assets that are Selected
+
+glTF Filetype:
+    #id: glTF_filetype
+
+    Export Type of the glTF File. 
+
+    glTF:
+        Text File Export that will generate Multiple Files ideal *for Development*
+    glb:
+        Binary Export it creates one File per Asset ideal *for Production*
+
+Texture Format:
+    #id: imageformat
+    Controls the file format of the exported material textures.
+
+    Original Format or PNG:
+        Textures will be exported in their original formats or as a PNG if a
+        texture's format is not specified or is unsupported by GLTF.
+
+    Original Format or JPEG:
+        Textures will be exported in their original formats or as a JPEG if a
+        texture's format is not specified or is unsupported by GLTF.
+
+    PNG:
+        Textures will be exported as PNGs.
+
+    JPEG:
+        Textures will be exported as JPEGs.
+
+Max Texture Resolution:
+    #id: maxresolution
+    If any texture is larger than this resolution, then downsize it to this resolution.  Useful for quickly reducing the file size.
+
+Rescale Texture as Power of Two:
+    #id: poweroftwo
+    When turned on, rescales exported images so that the final image has dimensions that are powers of two (for example, 512x1024, 2048x2048).
+    
+    This is required by some low-spec glTF implementations as well as WebGL implementations in older browsers.
+
+Flip Normal Map Y:
+    #id: flipnormalmapy
+    When turned on, inverts the y-coordinate on the normal texture map for each exported mesh.  glTF's orientation expects an upwards facing y-axis.
+
+Cull Empty Nodes:
+    #id: cullempty
+    When turned on, any object node with no descendants containing geometry is ignored.
+
+Export Custom Attributes:
+    #id: exportcustom
+    When turned on, all public attributes are exported. When turned off, only attributes defined in the glTF standard are exported.
+
+    Attributes are exported with their original types whenever possible.  However, glTF allows a maximum of 32 bits for floats and integers.  Integers are also required to be unsigned. Attempting to export a datatype larger than this will narrow the type and print a warning.
+
+    Exported custom attribute names are the original names plus an `_` (underscore) prefix.
+
+    As glTF only supports point attributes, name collisions will be resolved using the normal attribute resolution order.
+
+Export Mesh Names:
+    #id: exportmeshnames
+    When turned on, mesh names will be exported to the GLTF mesh name fields. The __Mesh Names Source__ parameter controls the naming of the mesh.
+
+Export Materials:
+    #id: exportmaterials
+    When turned on, this option exports Principled Shader materials. Materials are exported as a combination of emissive maps, normal maps, and pbrMetallicRoughness materials. All associated textures and images used by the material are exported alongside the material. Some Principled Shader options such as ambient occlusion and subsurface scattering are not exported.  
+
+    Materials that do not use the Principled Shader will be ignored.
+
+== Godot Scene ==
+
+Scene Filetype:
+    #id: godot_filetype
+
+    Define the Godot Scene File Type TSCN or ESCN
+
+    TSCN:
+        Editable Node File
+    ESCN:
+        Locket Node File
