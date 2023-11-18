@@ -1,7 +1,7 @@
 extends Node
 
-var instance_filename 	= "res://%FOLDER%//instance.csv"
-var assets_filename 	= "res://%FOLDER%//assets.csv"
+var instance_filename 	= "res://%FOLDER%instance.csv"
+var assets_filename 	= "res://%FOLDER%assets.csv"
 var delimeter 			= ","
 
 func _ready():
@@ -23,8 +23,8 @@ func _ready():
 		var line = f.get_csv_line(delimeter)
 		# Instancing
 		var o = pf_objects[int(line[0])].instantiate()
-		o.position 	= Vector3(float(line[4]), float(line[5]), float(line[6]))
-		o.rotation 	= Vector3(float(line[1]), float(line[2]), float(line[3]))
-		o.scale		= Vector3(float(line[7]), float(line[8]), float(line[9]))
+		o.position 	= Vector3(float(line[5]), float(line[6]), float(line[7]))
+		o.basis 	= Basis(Quaternion(float(line[1]), float(line[2]), float(line[3]), float(line[4])))
+		o.scale		= Vector3(float(line[8]), float(line[9]), float(line[10]))
 		add_child(o)
 	f.close()

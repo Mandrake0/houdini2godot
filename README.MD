@@ -2,6 +2,8 @@
 
 **Made for Godot 4.x**
 
+**Houdini Project Files are made with H20**
+
 Exports TSCN and ESCN Files with gltf as ressources.
 Scense can be Exported with customized Godot Instancer. 
 
@@ -29,7 +31,23 @@ You need to set the path Manualy in the file.
 
 [SideFx Doc](https://www.sidefx.com/docs/houdini/ref/plugins.html)
 
-## Example
+## Example Starter-Kit-3D-Platformer-Houdini-Example
+
+**Ideal for Starters**
+
+Project is Setuped with Relative Paths, should work out the box. (Tested on Windows 10)
+
+![Houdini](/help/images/Houdini_StarterKit3DPlatformer.PNG)
+
+Houdini Scene Setup
+
+![Houdini](/help/images/Godot_StarterKit3DPlatformer.PNG)
+
+Godot Project
+
+**Note: The Scene gets only loaded at Runtime of the Game. In the Editor the Scene can't be seen!!!**
+
+## Example 
 
 There are Project Files for Godot Engine and a hip File for Houdini
 The Godot Project requires the data from houdini to work.
@@ -50,3 +68,9 @@ The Full File Descripton doesn't exist but there is the Blender Exporter that co
 [Godot Doc TSCN](https://docs.godotengine.org/en/3.1/development/file_formats/tscn.html)
 
 [Blender Exporter Example Files](https://github.com/godotengine/godot-blender-exporter/tree/master/tests)
+
+# Credit
+
+**Big Credit to Kenney for the Godot Example Scene THANK YOU.**
+
+**https://www.kenny.nl**

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b0efm6l4w66i6"
+
+[deps]
+
+files=["res://houdini_export/instance..translation", "res://houdini_export/instance.0.02.translation", "res://houdini_export/instance.0.01.translation", "res://houdini_export/instance.0.9.translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation"]
+
+source_file="res://houdini_export/instance.csv"
+dest_files=["res://houdini_export/instance..translation", "res://houdini_export/instance.0.02.translation", "res://houdini_export/instance.0.01.translation", "res://houdini_export/instance.0.9.translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation"]
+
+[params]
+
+compress=true
+delimiter=0

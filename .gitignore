@@ -2,8 +2,7 @@
 test
 dev
 dev.json
-hip/backup
 hip/godot_export_simple_game_example.hiplc
 otls/backup
 otls/export
-example/houdini/backup
+*backup

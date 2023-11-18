@@ -1,0 +1,66 @@
+#type: node
+#context: sop
+#internal: godot_instance_asset
+#icon: godot_icon
+
+#tags: godot
+
+= Godot Instance Asset =
+
+"""The Godot Instance Asset creates reqiured Attributes for the Godot Exporter."""
+
+== Overview ==
+The Godot Instance Asset creates reqiured Attributes for the Godot Exporter ideal for beginners.
+
+
+@parameters
+
+== Instance ==
+
+Name:
+    #id:instance_name
+
+    Set's the instance Attribute Name, default value is: *instancepath*
+
+Object:
+    #id:instance_object
+
+    Select the Geometry that represents the Asset in Godot
+
+Godot Path:
+    #id:godotpathtoggle
+
+    Add a Custom Asset Path for Godot
+
+Godot Custom Path:
+    #id:godotpath
+
+    Insert the Full Path to the Asset that should be loaded from the Scene Loader in Godot.
+    
+    *res://assets/myAsset.tscn* 
+
+== Normal ==
+
+Attribute Name:
+    #id:normal_name
+
+    Creates a Default Normal Attribute (N)
+    
+
+== Scale ==
+
+Attribute Name:
+    #id:scale_name
+
+    Creates a Default Scale Attribute (scale)
+
+
+=== Custom VEX ===
+
+    Add custom VEX code for adding example random roation to N.
+    {{{
+        // VEX Random Normal
+        int seed = 14794;
+        @N = random(seed);
+    }}}
+    
