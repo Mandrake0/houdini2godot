@@ -19,7 +19,7 @@ I am not a Godot Game Developer the question is how the Tools can be used Produc
 
 1. Download Current Repository
 2. Extract to preferd Directory
-3. Move houdini2godot.json to the Houdini User Package Folder
+3. Move houdini2godot.json to the Houdini User Package Folder | **Note: There is Windows SETUP Script**
 4. Edit houdini2godot.json and set the Path
 5. Start Houdini and check if the Godot Assets are loaded Networkview:(Tab -> Godot)
     There is also Godot Shelf but currently not required
@@ -30,6 +30,9 @@ Use the Package JSON file for Houdini.
 You need to set the path Manualy in the file.
 
 [SideFx Doc](https://www.sidefx.com/docs/houdini/ref/plugins.html)
+
+#### Windows
+Run *windows_setup.ps1* in Powershell to Setup Godot2Houdini with the correct Path's
 
 ## Example Starter-Kit-3D-Platformer-Houdini-Example
 
