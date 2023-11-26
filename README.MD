@@ -48,6 +48,10 @@ Houdini Scene Setup
 
 Godot Project
 
+# [Youtube Setup Guide](https://youtu.be/viUqfUKJ3sg)
+
+
+
 **Note: The Scene gets only loaded at Runtime of the Game. In the Editor the Scene can't be seen!!!**
 
 ## Example 
