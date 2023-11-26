@@ -1,5 +1,4 @@
 {
-    "path": "/path/to/folder", 
     "env": [
         {
             "HOUDINI2GODOT": "/path/to/folder"
@@ -8,9 +7,10 @@
             "PATH": {
                 "method": "prepend", 
                 "value": [
-                    "/path/to/folder"
+                    "$HOUDINI2GODOT"
                 ]
             }
         }
-    ]
+    ],
+    "hpath": "$HOUDINI2GODOT"
 }

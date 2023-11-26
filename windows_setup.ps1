@@ -42,7 +42,7 @@ if (!(Test-Path $fullpath\packages)) {
 }
 
 # Create JSON File | it just Overwrites when it exist :-) 
-Write-Output $json.Replace("/path/to/folder", $currentLocation) | Out-File -FilePath $fullpath\packages\$jsonFile
+Write-Output $json.Replace("/path/to/folder", $currentLocation.Replace("\", "/")) | Out-File -FilePath $fullpath\packages\$jsonFile -Encoding default
 $MSG.Add("json File", "$fullpath\packages\$jsonFile")
 
 Write-Output "Houdini2Godot Package Created"
