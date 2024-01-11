@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://brhou1fj2mi1n"]
 
-[ext_resource path="res://houdini_export/instance.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://houdini_export/instance.gd" id="1"]
 
 [node name="scene" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
+
+[connection signal="body_entered" from="coin" to="coin" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="@Area3D@21881" to="@Area3D@21881" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="@Area3D@21882" to="@Area3D@21882" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="@Area3D@21883" to="@Area3D@21883" method="_on_body_entered" flags=18]

@@ -1,7 +1,10 @@
 extends Node
 
+@export_file("Instance File")
 var instance_filename 	= "res://houdini_export/instance.csv"
+@export_file("Assets File")
 var assets_filename 	= "res://houdini_export/assets.csv"
+@export
 var delimeter 			= ","
 
 func _ready():
@@ -28,3 +31,6 @@ func _ready():
 		o.scale		= Vector3(float(line[8]), float(line[9]), float(line[10]))
 		add_child(o)
 	f.close()
+	
+	var node = self.get_node(".")
+	node.owner = get_tree().edited_scene_root

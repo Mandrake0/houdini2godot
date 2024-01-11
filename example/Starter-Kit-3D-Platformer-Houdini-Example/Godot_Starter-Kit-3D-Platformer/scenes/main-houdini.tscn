@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://iynfxbionfnv"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://scenes/main-environment.tres" id="1_f7vey"]
-[ext_resource type="PackedScene" path="res://houdini_export/scene.tscn" id="2_s6swn"]
+[ext_resource type="PackedScene" uid="uid://brhou1fj2mi1n" path="res://houdini_export/scene.tscn" id="2_s6swn"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="3_m5ywh"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="3_odgh1"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="11_5qm8h"]
@@ -20,7 +20,7 @@ shadow_offset = Vector2(2, 2)
 environment = ExtResource("1_f7vey")
 
 [node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("3_m5ywh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16133, 0)
 view = NodePath("../View")
 
 [node name="scene" parent="." instance=ExtResource("2_s6swn")]
@@ -68,3 +68,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_38ys3")
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="scene/coin" to="scene/coin" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="scene/@Area3D@22399" to="scene/@Area3D@22399" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="scene/@Area3D@22400" to="scene/@Area3D@22400" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="scene/@Area3D@22401" to="scene/@Area3D@22401" method="_on_body_entered" flags=18]

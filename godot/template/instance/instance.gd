@@ -1,7 +1,10 @@
 extends Node
 
+@export_file("Instance File")
 var instance_filename 	= "res://%FOLDER%instance.csv"
+@export_file("Assets File")
 var assets_filename 	= "res://%FOLDER%assets.csv"
+@export
 var delimeter 			= ","
 
 func _ready():
@@ -28,3 +31,7 @@ func _ready():
 		o.scale		= Vector3(float(line[8]), float(line[9]), float(line[10]))
 		add_child(o)
 	f.close()
+
+	# By takeing Ownership it will show up in the Editor 
+	var node = self.get_node(".")
+	node.owner = get_tree().edited_scene_root

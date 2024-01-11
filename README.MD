@@ -52,8 +52,6 @@ Godot Project
 
 
 
-**Note: The Scene gets only loaded at Runtime of the Game. In the Editor the Scene can't be seen!!!**
-
 ## Example 
 
 There are Project Files for Godot Engine and a hip File for Houdini
