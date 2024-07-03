@@ -1,0 +1,7 @@
+1,res://objects/cloud_houdini.tscn,random_time,random_velocity,albedo_color
+0,res://objects/cloud.tscn
+0,res://objects/platform.tscn
+0,res://objects/platform_falling.tscn
+0,res://objects/coin.tscn
+0,res://models/flag.glb
+0,res://objects/platform_grass_large_round.tscn

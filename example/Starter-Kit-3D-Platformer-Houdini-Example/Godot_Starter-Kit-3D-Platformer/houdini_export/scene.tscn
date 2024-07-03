@@ -4,8 +4,3 @@
 
 [node name="scene" type="Node3D"]
 script = ExtResource("1")
-
-[connection signal="body_entered" from="coin" to="coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="@Area3D@21881" to="@Area3D@21881" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="@Area3D@21882" to="@Area3D@21882" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="@Area3D@21883" to="@Area3D@21883" method="_on_body_entered" flags=18]

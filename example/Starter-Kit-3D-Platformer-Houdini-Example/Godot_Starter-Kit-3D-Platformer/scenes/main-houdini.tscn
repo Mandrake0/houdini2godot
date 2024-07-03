@@ -68,7 +68,3 @@ text = "0"
 label_settings = SubResource("LabelSettings_38ys3")
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_coin_collected"]
-[connection signal="body_entered" from="scene/coin" to="scene/coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="scene/@Area3D@22399" to="scene/@Area3D@22399" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="scene/@Area3D@22400" to="scene/@Area3D@22400" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="scene/@Area3D@22401" to="scene/@Area3D@22401" method="_on_body_entered" flags=18]

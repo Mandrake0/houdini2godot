@@ -13,8 +13,27 @@
 The Godot Scene Exporter uses the Houdini Instance Functionality for Exporting Level Designs.
 Basic Static Meshes Export is possible.
 
+== Custom Godot Attribute ==
+For Exporting Custom Godot Attributes from a Instance Point it requires the following:
+
+1. *godot_parms* Attribute with a List of the Attributes to be export_object_list Delimeter: " "
+
+EXAMPLE: {my_vel my_secondValue this_godot_color}    
+
+2. *godot_parm_TheGodotAttribute* Each Godot Attribute as Float,Int or String.   
+
+EXAMPLE:
+        godot_parm_my_vel
+
+        godot_parm_my_secondValue 
+
+        godot_parm_this_godot_color
+
+
 NOTE:
-    Currently there are many Limitations!
+
+    Currently there are some Limitations!
+
     NO Export for Lights, Bones, Volumes and every other Funky stuff :-) 
 
 @parameters
@@ -41,7 +60,9 @@ Asset Flag Type:
 Filename:
     #id: asset_filename
 
-    The Export Filename, Default Filename is *asset.csv* 
+    The Export Filename, Default Filename is *asset.txt* 
+
+    NOTE: Godot creates Import Errors when the Suffix is .csv 
 
 == Instance ==
 
@@ -87,7 +108,9 @@ Float is Integer:
 Filename:
     #id: instance_filename
 
-    The Exporting Instance Filename, Default Filename is *instance.csv* 
+    The Exporting Instance Filename, Default Filename is *instance.txt* 
+
+    NOTE: Godot creates Import Errors when the Suffix is .csv 
 
 == Godot Scene ==
 

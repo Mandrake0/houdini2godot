@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://yykbsxwv7of2"
+
+[deps]
+
+files=["res://houdini_export/assets.res://objects/cloud.tscn.translation"]
+
+source_file="res://houdini_export/assets.csv"
+dest_files=["res://houdini_export/assets.res://objects/cloud.tscn.translation"]
+
+[params]
+
+compress=true
+delimiter=0

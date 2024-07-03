@@ -6,10 +6,10 @@ uid="uid://b0efm6l4w66i6"
 
 [deps]
 
-files=["res://houdini_export/instance..translation", "res://houdini_export/instance.0.02.translation", "res://houdini_export/instance.0.01.translation", "res://houdini_export/instance.0.9.translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation"]
+files=["res://houdini_export/instance.0.translation", "res://houdini_export/instance.0.04.translation", "res://houdini_export/instance.0.translation", "res://houdini_export/instance.1.00.translation", "res://houdini_export/instance.0.55.translation", "res://houdini_export/instance.0.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance..translation"]
 
 source_file="res://houdini_export/instance.csv"
-dest_files=["res://houdini_export/instance..translation", "res://houdini_export/instance.0.02.translation", "res://houdini_export/instance.0.01.translation", "res://houdini_export/instance.0.9.translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance..translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation"]
+dest_files=["res://houdini_export/instance.0.translation", "res://houdini_export/instance.0.04.translation", "res://houdini_export/instance.0.translation", "res://houdini_export/instance.1.00.translation", "res://houdini_export/instance.0.55.translation", "res://houdini_export/instance.0.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance.1.translation", "res://houdini_export/instance..translation"]
 
 [params]
 
