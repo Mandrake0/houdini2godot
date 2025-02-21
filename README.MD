@@ -7,6 +7,12 @@
 Exports TSCN and ESCN Files with gltf as ressources.
 Scense can be Exported with customized Godot Instancer. 
 
+## Houdini Engine in Godot
+
+Thanks to the Development of peterprickarz we got now HEGo the Houdini Engine in Godot.
+
+[Github Repo HEGo](https://github.com/peterprickarz/hego)
+
 ## Development
 
 **Please give some Feedback what type of Features are needed.** 
